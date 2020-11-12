@@ -8,8 +8,8 @@ export type Meal = {
     strMealThumb: string;
     strTags: string;
     strYoutube: string;
-    strIngredients: string;
-    strMeasures: string;
+    strIngredients: string[];
+    strMeasures: string[];
     strSource: string;
     dateModified: string;
 }

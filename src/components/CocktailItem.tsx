@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Cocktail } from '../types/types';
 
 type Props = {
@@ -10,7 +10,7 @@ const CocktailItem: React.FC<Props> = ({ cocktail }) => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.imageContainer}>
-				<Image source={{ uri: cocktail.strDrinkThumb + "/preview" }} style={styles.image} resizeMode='contain' />
+				<Image source={{ uri: cocktail.strDrinkThumb + "/preview" }} style={styles.image} resizeMode='cover' />
 			</View>
 			<View style={styles.infosContainer}>
 				<Text style={styles.title} numberOfLines={1} ellipsizeMode='tail'>{cocktail.strDrink}</Text>
@@ -21,46 +21,58 @@ const CocktailItem: React.FC<Props> = ({ cocktail }) => {
 }
 
 const styles = StyleSheet.create({
-	container: {
-		width: '100%',
-		paddingHorizontal: 16,
-		paddingVertical: 16,
-		display: "flex",
-		flexDirection: "row",
-		borderBottomWidth: 2,
-		borderBottomColor: "#E9E9E9"
-
-	},
-	imageContainer: {
-		width: 90,
-		display: "flex",
-		justifyContent: "center",
-		alignItems: 'center'
-	},
-	image: {
-		height: 120,
-		aspectRatio: 1,
-	},
-	infosContainer: {
-		flex: 1,
-		paddingHorizontal: 16,
-	},
-	title: {
-		fontSize: 18,
-		fontWeight: '700',
-		color: "#2413A2",
-	},
-	author: {
-		fontSize: 14,
-		fontWeight: '600',
-		color: "#747474"
-	},
-	description: {
-		paddingTop: 16,
-		fontSize: 14,
-		fontWeight: '400',
-		color: "#989898"
-	}
+    container: {
+        width: 250,
+        height: 200,
+        borderRadius: 10,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        borderWidth: 1,
+        borderColor: "#000",
+        marginVertical: 10,
+    },
+    imageContainer: {
+        display: "flex",
+        height: "75%",
+        width: "100%",
+        justifyContent: "center",
+        alignItems: 'center',
+        borderBottomColor: "#000",
+        borderBottomWidth: 1,
+    },
+    image: {
+        height: "100%",
+        width: "100%",
+        borderTopRightRadius: 10,
+        borderTopLeftRadius: 10,
+    },
+    infosContainer: {
+        backgroundColor: "#fff",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        height: "25%",
+        borderBottomRightRadius: 10,
+        borderBottomLeftRadius: 10,
+    },
+    title: {
+        fontSize: 18,
+        fontWeight: '700',
+        color: "#000",
+    },
+    author: {
+        fontSize: 14,
+        fontWeight: '600',
+        color: "#747474"
+    },
+    description: {
+        paddingTop: 16,
+        fontSize: 14,
+        fontWeight: '400',
+        color: "#989898"
+    }
 });
 
 export default CocktailItem

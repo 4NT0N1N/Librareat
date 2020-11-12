@@ -1,14 +1,13 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, StatusBar } from 'react-native';
-import { Input } from 'react-native-elements';
-import { Icon } from 'react-native-vector-icons/Icon';
+import { Icon, SearchBar } from 'react-native-elements';
 import CocktailItem from '../components/CocktailItem';
 import { Cocktail } from '../types/types';
 import EmptyListPlaceholder from '../components/EmptyListPlaceholder';
 import { toCocktail } from '../utils'
 
-const CocktailsScreen = () => {
+const CocktailsScreen = (props: any) => {
 
     const [query, setquery] = useState<string>('')
     const [cocktails, setcocktails] = useState<Cocktail[]>([])
@@ -26,32 +25,26 @@ const CocktailsScreen = () => {
         <View style={styles.container}>
             <StatusBar barStyle="dark-content" />
             <SafeAreaView>
-                <Text style={styles.title}>Librar'Eat</Text>
-                <Input
+                <SearchBar
                     placeholder="Recherche..."
                     value={query}
                     onChangeText={setquery}
-                    style={styles.searchInput}
-                    leftIcon={
-                        <Icon
-                            name='search'
-                            size={24}
-                            color='black'
-                        />
-                    }
+                    onKeyPress={onPressSearch}
+                    showLoading={query == "" ? false : true}
                 />
-                <TouchableOpacity style={styles.searchButton} onPress={onPressSearch}>
-                    <Text style={styles.searchButtonText}>Recherche</Text>
-                </TouchableOpacity>
+                <View style={styles.searchButton}>
+                    <Text style={styles.searchButtonText}>{`Résultat(s) : ${cocktails.length}`}</Text>
+                </View>
                 <FlatList
                     data={cocktails}
                     ListEmptyComponent={<EmptyListPlaceholder />}
+                    contentContainerStyle={styles.flatlist}
                     keyExtractor={(item) => JSON.stringify(item)}
                     renderItem={({ item }) => {
                         return (
-                            <CocktailItem
-                                cocktail={item}
-                            />
+                            <TouchableOpacity onPress={() => props.navigation.navigate("CocktailDetail", { cocktail: item })}>
+                                <CocktailItem cocktail={item} />
+                            </TouchableOpacity>
                         )
                     }}
                 />
@@ -67,17 +60,13 @@ const styles = StyleSheet.create({
         padding: 16,
     },
     searchInput: {
-        fontWeight: '500',
-        fontSize: 24,
-        padding: 16,
-        backgroundColor: '#F6F6F6'
     },
     searchButton: {
         padding: 16,
         display: "flex",
         alignItems: "center",
         justifyContent: 'center',
-        backgroundColor: '#4630EB'
+        backgroundColor: '#d8bf18'
     },
     searchButtonText: {
         fontWeight: '600',
@@ -93,6 +82,9 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
     },
+    flatlist: {
+        alignItems: "center"
+    }
 });
 
 export default CocktailsScreen

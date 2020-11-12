@@ -1,6 +1,16 @@
 import { Cocktail, Meal } from "./types/types";
 
 export const toCocktail = (data: any) => {
+    const arrayIngredients: string[] = []
+    const arrayMeasures: string[] = []
+    let index = 1
+    while (data["strIngredient" + index.toString()] != undefined) {
+        if (data["strIngredient" + index.toString()] != "" || data["strIngredient" + index.toString()] != null) {
+            arrayIngredients.push(data["strIngredient" + index.toString()])
+            arrayMeasures.push("strMeasure" + index.toString())
+        }
+        index++
+    }
     const cocktail: Cocktail = {
         idDrink: data.idDrink,
         strDrink: data.strDrink,
@@ -12,14 +22,24 @@ export const toCocktail = (data: any) => {
         strInstructions: data.strInstructions,
         strDrinkThumb: data.strDrinkThumb,
         strTags: data.strTags,
-        strIngredients: data.strIngredient1,
-        strMeasures: data.strMeasure1,
+        strIngredients: arrayIngredients,
+        strMeasures: arrayMeasures,
         dateModified: data.dateModified,
     }
     return cocktail
 }
 
 export const toMeal = (data: any) => {
+    const arrayIngredients: string[] = []
+    const arrayMeasures: string[] = []
+    let index = 1
+    while (data["strIngredient" + index.toString()] != undefined) {
+        if (data["strIngredient" + index.toString()] != "" || data["strIngredient" + index.toString()] != null) {
+            arrayIngredients.push(data["strIngredient" + index.toString()])
+            arrayMeasures.push("strMeasure" + index.toString())
+        }
+        index++
+    }
     const meal: Meal = {
         idMeal: data.idMeal,
         strMeal: data.strMeal,
@@ -30,8 +50,8 @@ export const toMeal = (data: any) => {
         strMealThumb: data.strMealThumb,
         strTags: data.strTags,
         strYoutube: data.strYoutube,
-        strIngredients: data.strIngredient1,
-        strMeasures: data.strMeasure1,
+        strIngredients: arrayIngredients,
+        strMeasures: arrayMeasures,
         strSource: data.strSource,
         dateModified: data.dateModified,
     }

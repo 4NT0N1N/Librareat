@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Meal } from '../types/types';
 
 type Props = {
@@ -10,7 +10,7 @@ const MealItem: React.FC<Props> = ({ meal }) => {
     return (
         <View style={styles.container}>
             <View style={styles.imageContainer}>
-                <Image source={{ uri: meal.strMealThumb + "/preview" }} style={styles.image} resizeMode='contain' />
+                <Image source={{ uri: meal.strMealThumb + "/preview" }} style={styles.image} resizeMode='cover' />
             </View>
             <View style={styles.infosContainer}>
                 <Text style={styles.title} numberOfLines={1} ellipsizeMode='tail'>{meal.strMeal}</Text>
@@ -24,33 +24,38 @@ const styles = StyleSheet.create({
     container: {
         width: 250,
         height: 200,
-        borderRadius: 8,
+        borderRadius: 10,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        borderWidth: 2,
-        borderColor: "#E9E9E9",
+        borderWidth: 1,
+        borderColor: "#000",
         marginVertical: 10,
-        backgroundColor: "#000"
     },
     imageContainer: {
         display: "flex",
-        height: "50%",
+        height: "75%",
         width: "100%",
         justifyContent: "center",
-        alignItems: 'center'
+        alignItems: 'center',
+        borderBottomColor: "#000",
+        borderBottomWidth: 1,
     },
     image: {
-        flex: 1,
-        aspectRatio: 1,
+        height: "100%",
+        width: "100%",
+        borderTopRightRadius: 10,
+        borderTopLeftRadius: 10,
     },
     infosContainer: {
         backgroundColor: "#fff",
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
-        height: "40%"
+        height: "25%",
+        borderBottomRightRadius: 10,
+        borderBottomLeftRadius: 10,
     },
     title: {
         fontSize: 18,
