@@ -1,45 +1,49 @@
 import axios from 'axios';
-import React, { useState } from 'react';
-import { FlatList, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View, StatusBar} from 'react-native';
-import BookItem from '../components/BookItem';
+import React, { useState, useEffect } from 'react';
+import { FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, StatusBar, TextInput } from 'react-native';
+import { Icon, SearchBar } from 'react-native-elements';
+import MealItem from '../components/MealItem';
+import { toMeal } from '../utils';
 import EmptyListPlaceholder from '../components/EmptyListPlaceholder';
+import { Meal } from '../types/types';
 
 const MainScreen = () => {
-
   const [query, setquery] = useState<string>('')
-  const [books, setbooks] = useState<any[]>([])
+  const [meals, setmeals] = useState<Meal[]>([])
 
+  useEffect(() => {
+    onPressSearch()
+  }, [query])
 
   const onPressSearch = async () => {
-    if (query === '') {
-      setbooks([])
-      return
-    }
-    const res = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}`)
-    setbooks(res.data.items)
+    const res = await axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`)
+    setmeals(res.data.meals.map((item: any) => toMeal(item)))
   }
+
 
   return (
     <View style={styles.container}>
-      <StatusBar style="dark" />
+      <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <Text style={styles.title}>Search a Book</Text>
-        <TextInput value={query} onChangeText={setquery} style={styles.searchInput} />
-        <TouchableOpacity style={styles.searchButton} onPress={onPressSearch}>
-          <Text style={styles.searchButtonText}>SEARCH</Text>
-        </TouchableOpacity>
+        <Text style={styles.title}>Librar'Eat</Text>
+        <SearchBar
+          placeholder="Recherche..."
+          value={query}
+          onChangeText={setquery}
+          showLoading
+        />
+        {/* onPressSearch */}
+        <View style={styles.searchButton}>
+          <Text style={styles.searchButtonText}>Résultat : </Text>
+        </View>
         <FlatList
-          data={books}
+          data={meals}
+          contentContainerStyle={styles.flatlist}
           ListEmptyComponent={<EmptyListPlaceholder />}
-          renderItem={({ item, index }) => {
-            console.log(item)
+          keyExtractor={(item) => JSON.stringify(item)}
+          renderItem={({ item }) => {
             return (
-              <BookItem
-                thumbnailUrl={item.volumeInfo.imageLinks?.thumbnail}
-                title={item.volumeInfo.title}
-                description={item.volumeInfo.description}
-                author={item.volumeInfo.authors?.map((as: string) => as.replace(/,/g, '')).join(', ')}
-              />
+              <MealItem meal={item} />
             )
           }}
         />
@@ -55,17 +59,13 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   searchInput: {
-    fontWeight: '500',
-    fontSize: 24,
-    padding: 16,
-    backgroundColor: '#F6F6F6'
   },
   searchButton: {
     padding: 16,
     display: "flex",
     alignItems: "center",
     justifyContent: 'center',
-    backgroundColor: '#4630EB'
+    backgroundColor: '#9ab065'
   },
   searchButtonText: {
     fontWeight: '600',
@@ -81,6 +81,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  flatlist: {
+    alignItems: "center"
+  }
 });
 
 export default MainScreen

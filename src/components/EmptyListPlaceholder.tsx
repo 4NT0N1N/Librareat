@@ -7,7 +7,7 @@ type Props = {
 const EmptyListPlaceholder: React.FC<Props> = ({  }) => {
 	return (
 		<View style={styles.container}>
-			<Text style={styles.placeholder}>Search for a book ...</Text>
+			<Text style={styles.placeholder}>Recherche pour une recette ...</Text>
 		</View>
 
 	)
