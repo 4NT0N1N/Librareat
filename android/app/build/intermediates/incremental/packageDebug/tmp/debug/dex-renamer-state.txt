@@ -1,4 +1,4 @@
-#Thu Nov 12 09:28:27 CET 2020
-base.0=D\:\\Cours\\Projets\\Library\\android\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+#Thu Nov 19 18:06:55 CET 2020
+base.0=C\:\\Dev\\Librareat\\android\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

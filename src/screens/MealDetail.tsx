@@ -61,9 +61,8 @@ const MealDetail = (props: any) => {
                         {
                             section.content.map((name: string, index: number) =>
                                 <TouchableOpacity style={styles.foodItem}>
-                                    <FoodComponent key={name} item={{ name: name, measure: measures[index] }} />
+                                    <FoodComponent key={`${name}${index}`} item={{ name: name, measure: measures[index] }} />
                                 </TouchableOpacity>
-
                             )
                         }
                     </View>
@@ -83,7 +82,6 @@ const MealDetail = (props: any) => {
                                 <TouchableOpacity style={styles.tagItem} onPress={() => props.navigation.navigate('Meals', { tag: tag })}>
                                     <TagComponent key={tag} item={{ value: tag }} />
                                 </TouchableOpacity>
-
                             )
                         }
                     </View>
@@ -132,7 +130,7 @@ const styles = StyleSheet.create({
         marginVertical: 5
     },
     title: {
-        fontWeight: '800',
+        fontWeight: 'bold',
         fontSize: 42,
         padding: 16,
         backgroundColor: "#9ab065",

@@ -61,7 +61,7 @@ const CocktailDetail = (props: any) => {
                         {
                             section.content.map((name: string, index: number) =>
                                 <TouchableOpacity style={styles.foodItem}>
-                                    <FoodComponent key={name} item={{ name: name, measure: measures[index] }} />
+                                    <FoodComponent key={`${name}${index}`} item={{ name: name, measure: measures[index] }} />
                                 </TouchableOpacity>
 
                             )
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
         marginVertical: 5
     },
     title: {
-        fontWeight: '800',
+        fontWeight: 'bold',
         fontSize: 42,
         padding: 16,
         backgroundColor: "#d8bf18",

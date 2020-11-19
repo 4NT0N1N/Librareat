@@ -42,15 +42,16 @@ function MyTabStack() {
     <TabStack.Navigator initialRouteName="HomeMeals"
       tabBarPosition="bottom"
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ color }) => {
+        tabBarIcon: ({ focused, color }) => {
           switch (route.name) {
             case "HomeMeals":
-              return <Ionicons name="md-restaurant-sharp" size={WINDOW_HEIGHT * 0.04} color={color} />
+              return <Ionicons name="md-restaurant-sharp" size={WINDOW_HEIGHT * 0.04} color={focused ? "#9ab065"  : color} />
             case "HomeCocktails":
-              return <Entypo name="drink" size={WINDOW_HEIGHT * 0.04} color={color} />
+              return <Entypo name="drink" size={WINDOW_HEIGHT * 0.04} color={focused ? "#d8bf18"  : color} />
             case "Random":
-              return <FontAwesome name="random" size={WINDOW_HEIGHT * 0.04} color={color} />
+              return <FontAwesome name="random" size={WINDOW_HEIGHT * 0.04} color={focused ? "#000"  : color} />
             default:
+              
               break;
           }
         }
