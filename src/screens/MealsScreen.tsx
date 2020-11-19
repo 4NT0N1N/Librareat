@@ -6,11 +6,11 @@ import MealItem from '../components/MealItem';
 import { toMeal } from '../utils';
 import EmptyListPlaceholder from '../components/EmptyListPlaceholder';
 import { Meal } from '../types/types';
+import { StackActions } from '@react-navigation/native';
 
 const MealsScreen = (props: any) => {
   const [query, setquery] = useState<string>('')
   const [meals, setmeals] = useState<Meal[]>([])
-
   useEffect(() => {
     onPressSearch()
   }, [query])
@@ -36,6 +36,7 @@ const MealsScreen = (props: any) => {
         <View style={styles.searchButton}>
           <Text style={styles.searchButtonText}>{`Résultat(s) : ${meals.length}`}</Text>
         </View>
+
         <FlatList
           data={meals}
           contentContainerStyle={styles.flatlist}
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#393e42',
   },
   flatlist: {
     alignItems: "center"

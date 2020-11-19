@@ -30,8 +30,18 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         borderWidth: 1,
-        borderColor: "#000",
+        borderColor: "#fff",
         marginVertical: 10,
+        // Shadow
+        shadowColor: "#222",
+        shadowOffset: {
+            width: 0,
+            height: 12,
+        },
+        shadowOpacity: 0.58,
+        shadowRadius: 16.00,
+        // Shadow Android
+        elevation: 24,
     },
     imageContainer: {
         display: "flex",
@@ -39,7 +49,7 @@ const styles = StyleSheet.create({
         width: "100%",
         justifyContent: "center",
         alignItems: 'center',
-        borderBottomColor: "#000",
+        borderBottomColor: "#fff",
         borderBottomWidth: 1,
     },
     image: {
@@ -49,7 +59,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 10,
     },
     infosContainer: {
-        backgroundColor: "#fff",
+        backgroundColor: "#484f54",
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
@@ -60,7 +70,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 18,
         fontWeight: '700',
-        color: "#000",
+        color: "#fff",
     },
     author: {
         fontSize: 14,

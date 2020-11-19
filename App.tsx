@@ -10,8 +10,10 @@ import { StyleSheet, Text } from 'react-native';
 import MealDetail from './src/screens/MealDetail';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { WINDOW_HEIGHT, WINDOW_WIDTH } from './src/constants';
 import CocktailDetail from './src/screens/CocktailDetail';
+import RandomScreen from './src/screens/RandomScreen';
 
 const MealsStack = createStackNavigator()
 function MyMealsStack() {
@@ -43,9 +45,11 @@ function MyTabStack() {
         tabBarIcon: ({ color }) => {
           switch (route.name) {
             case "HomeMeals":
-              return <Ionicons name="md-restaurant-sharp" size={WINDOW_HEIGHT*0.04} color={color} />
+              return <Ionicons name="md-restaurant-sharp" size={WINDOW_HEIGHT * 0.04} color={color} />
             case "HomeCocktails":
-              return <Entypo name="drink" size={WINDOW_HEIGHT*0.04} color={color} />
+              return <Entypo name="drink" size={WINDOW_HEIGHT * 0.04} color={color} />
+            case "Random":
+              return <FontAwesome name="random" size={WINDOW_HEIGHT * 0.04} color={color} />
             default:
               break;
           }
@@ -54,13 +58,16 @@ function MyTabStack() {
       tabBarOptions={{
         showIcon: true,
         showLabel: false,
-        activeTintColor: 'red',
+        activeTintColor: '#9ab065',
         inactiveTintColor: 'rgba(0,0,0,0.3)',
         indicatorStyle: {
           backgroundColor: 'rgba(0,0,0,0.3)'
         },
         tabStyle: {
-          height: WINDOW_HEIGHT*0.07,
+          height: WINDOW_HEIGHT * 0.07,
+          backgroundColor: "#393e42",
+          borderTopColor: "#fff",
+          borderTopWidth: 1,
         },
         iconStyle: {
           width: WINDOW_WIDTH / 2,
@@ -72,6 +79,7 @@ function MyTabStack() {
     >
       <TabStack.Screen name="HomeMeals" component={MyMealsStack} />
       <TabStack.Screen name="HomeCocktails" component={MyCocktailStack} />
+      <TabStack.Screen name="Random" component={RandomScreen} />
     </TabStack.Navigator>
   )
 }
@@ -81,7 +89,7 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: "#393e42" }}>
         <Text style={styles.title}>Librar'Eat</Text>
         <NavigationContainer>
           <MyTabStack />
@@ -97,5 +105,6 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     fontSize: 42,
     padding: 16,
+    color: "#FFF",
   },
 })

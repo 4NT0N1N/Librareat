@@ -6,7 +6,7 @@ export type Meal = {
     strArea: string;
     strInstructions: string;
     strMealThumb: string;
-    strTags: string;
+    strTags: string[];
     strYoutube: string;
     strIngredients: string[];
     strMeasures: string[];
@@ -24,8 +24,17 @@ export type Cocktail = {
 	strGlass: string;
     strInstructions: string;
     strDrinkThumb: string;
-    strTags: string;
+    strTags: string[];
     strIngredients: string[];
     strMeasures: string[];
     dateModified: string;
+}
+
+export type Tag = {
+    value: string;
+}
+
+export type Food = {
+    name: string;
+    measure: string;
 }

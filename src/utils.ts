@@ -7,7 +7,7 @@ export const toCocktail = (data: any) => {
     while (data["strIngredient" + index.toString()] != undefined) {
         if (data["strIngredient" + index.toString()] != "" || data["strIngredient" + index.toString()] != null) {
             arrayIngredients.push(data["strIngredient" + index.toString()])
-            arrayMeasures.push("strMeasure" + index.toString())
+            arrayMeasures.push(data["strMeasure" + index.toString()])
         }
         index++
     }
@@ -21,7 +21,7 @@ export const toCocktail = (data: any) => {
         strGlass: data.strGlass,
         strInstructions: data.strInstructions,
         strDrinkThumb: data.strDrinkThumb,
-        strTags: data.strTags,
+        strTags: data.strTags != null ? data.strTags.split(',') : [],
         strIngredients: arrayIngredients,
         strMeasures: arrayMeasures,
         dateModified: data.dateModified,
@@ -34,9 +34,9 @@ export const toMeal = (data: any) => {
     const arrayMeasures: string[] = []
     let index = 1
     while (data["strIngredient" + index.toString()] != undefined) {
-        if (data["strIngredient" + index.toString()] != "" || data["strIngredient" + index.toString()] != null) {
+        if (data["strIngredient" + index.toString()] != "" && data["strIngredient" + index.toString()] != null) {
             arrayIngredients.push(data["strIngredient" + index.toString()])
-            arrayMeasures.push("strMeasure" + index.toString())
+            arrayMeasures.push(data["strMeasure" + index.toString()])
         }
         index++
     }
@@ -48,7 +48,7 @@ export const toMeal = (data: any) => {
         strArea: data.strArea,
         strInstructions: data.strInstructions,
         strMealThumb: data.strMealThumb,
-        strTags: data.strTags,
+        strTags: data.strTags != null ? data.strTags.split(',') : [],
         strYoutube: data.strYoutube,
         strIngredients: arrayIngredients,
         strMeasures: arrayMeasures,
