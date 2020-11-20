@@ -14,6 +14,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { WINDOW_HEIGHT, WINDOW_WIDTH } from './src/constants';
 import CocktailDetail from './src/screens/CocktailDetail';
 import RandomScreen from './src/screens/RandomScreen';
+import CategoryScreen from './src/screens/CategoryScreen';
 
 const MealsStack = createStackNavigator()
 function MyMealsStack() {
@@ -80,7 +81,8 @@ function MyTabStack() {
     >
       <TabStack.Screen name="HomeMeals" component={MyMealsStack} />
       <TabStack.Screen name="HomeCocktails" component={MyCocktailStack} />
-      <TabStack.Screen name="Random" component={RandomScreen} />
+      {/* <TabStack.Screen name="Random" component={RandomScreen} /> */}
+      <TabStack.Screen name="Random" component={CategoryScreen} />
     </TabStack.Navigator>
   )
 }

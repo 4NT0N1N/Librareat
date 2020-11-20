@@ -76,7 +76,6 @@ const MealDetail = (props: any) => {
             case "Tags":
                 return (
                     <View style={styles.listContainer}>
-
                         {
                             section.content.map((tag: string) =>
                                 <TouchableOpacity style={styles.tagItem} onPress={() => props.navigation.navigate('Meals', { tag: tag })}>
@@ -88,9 +87,11 @@ const MealDetail = (props: any) => {
                 )
             case "Catégories":
                 return (
-                    <TouchableOpacity style={styles.tagItem} onPress={() => props.navigation.navigate('Meals', { category: section.content })}>
-                        <TagComponent item={{ value: section.content }} />
-                    </TouchableOpacity>
+                    <View style={styles.listContainer}>
+                        <TouchableOpacity style={styles.tagItem} onPress={() => props.navigation.navigate('Meals', { category: section.content })}>
+                            <TagComponent item={{ value: section.content }} />
+                        </TouchableOpacity>
+                    </View>
                 )
             default:
                 return <View>

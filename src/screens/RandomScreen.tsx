@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         display: "flex",
         alignItems: "center",
         justifyContent: 'center',
-        backgroundColor: '#d8bf18',
+        backgroundColor: '#000',
         borderRadius: 10,
         marginBottom: WINDOW_HEIGHT * 0.02
     },

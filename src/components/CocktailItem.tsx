@@ -1,6 +1,5 @@
 import React from 'react'
 import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { WINDOW_WIDTH } from '../constants';
 import { Cocktail } from '../types/types';
 
 type Props = {
@@ -16,7 +15,6 @@ const CocktailItem: React.FC<Props> = ({ cocktail }) => {
             <View style={styles.infosContainer}>
                 <Text style={styles.title} numberOfLines={1} ellipsizeMode='tail'>{cocktail.strDrink}</Text>
             </View>
-
         </View>
 
     )
