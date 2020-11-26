@@ -3,6 +3,7 @@ import React from 'react';
 import MealsScreen from './src/screens/MealsScreen';
 import { createStackNavigator } from '@react-navigation/stack'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import CocktailsScreen from './src/screens/CocktailsScreen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SafeAreaView from 'react-native-safe-area-view';
@@ -81,11 +82,22 @@ function MyTabStack() {
     >
       <TabStack.Screen name="HomeMeals" component={MyMealsStack} />
       <TabStack.Screen name="HomeCocktails" component={MyCocktailStack} />
-      {/* <TabStack.Screen name="Random" component={RandomScreen} /> */}
-      <TabStack.Screen name="Random" component={CategoryScreen} />
+      <TabStack.Screen name="Random" component={RandomScreen} />
+      {/* <TabStack.Screen name="Random" component={CategoryScreen} /> */}
     </TabStack.Navigator>
   )
 }
+
+const Drawer = createDrawerNavigator();
+function MyDrawer() {
+  return(
+    <Drawer.Navigator initialRouteName="Categories">
+      <Drawer.Screen name="Categories" component={CategoryScreen} />
+    </Drawer.Navigator>
+  )
+  
+}
+
 
 export default function App() {
 
@@ -96,6 +108,7 @@ export default function App() {
         <Text style={styles.title}>Librar'Eat</Text>
         <NavigationContainer>
           <MyTabStack />
+          {/* <MyDrawer /> */}
         </NavigationContainer>
       </SafeAreaView>
     </SafeAreaProvider>

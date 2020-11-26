@@ -25,7 +25,7 @@ const RandomScreen = (props: any) => {
     return (
         <View style={styles.container}>
 
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', borderTopColor: "#000", borderTopWidth: 1 }}>
                 {
                     meal != undefined ?
                         <View>

@@ -1,12 +1,9 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, StatusBar, TextInput } from 'react-native';
-import { Icon, SearchBar } from 'react-native-elements';
+import { FlatList, SafeAreaView, StyleSheet, View, StatusBar, TextInput } from 'react-native';
 import CategroyItem from '../components/CategroyItem';
-import { toMeal } from '../utils';
 import EmptyListPlaceholder from '../components/EmptyListPlaceholder';
 import { Meal } from '../types/types';
-import { WINDOW_WIDTH } from '../constants';
 
 const CategoryScreen = (props: any) => {
   const [query, setquery] = useState<string>('')
